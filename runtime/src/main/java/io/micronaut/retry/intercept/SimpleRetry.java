@@ -155,8 +155,7 @@ class SimpleRetry implements RetryState, MutableRetryState {
     @Internal
     public long nextDelay() {
         double multiplier = getMultiplier().orElse(1.0);
-        int current = attemptNumber.get() + 1;
-        long delay = (long) (getDelay().toMillis() * multiplier) * current;
+        long delay = (long) (getDelay().toMillis() * multiplier);
         overallDelay.addAndGet(delay);
         return delay;
     }
